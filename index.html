@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyShow Clone</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        header input {
+            width: 50%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+        header button {
+            background-color: #e50914;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        main {
+            padding: 20px;
+        }
+        .movie-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .movie {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 200px;
+        }
+        .movie img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .movie p {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .movie span {
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>book<span style="color: red;">my</span>show</h1>
+        <input type="text" placeholder="Search for Movies, Events, Plays, Sports and Activities">
+        <button>Sign In</button>
+    </header>
+    <main>
+        <h2>Recommended Movies</h2>
+        <div class="movie-container">
+            <div class="movie">
+                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/chhaava-et00408691-1737623374.jpg" alt="Chhaava">
+                <p>Chhaava</p>
+                <span>Action/Drama/Historical</span>
+            </div>
+            <div class="movie">
+                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/captain-america-brave-new-world-et00399765-1737957738.jpg" alt="Captain America: Brave New World">
+                <p>Captain America: Brave New World</p>
+                <span>Action/Adventure/Sci-Fi</span>
+            </div>
+            <div class="movie">
+                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/mufasa-the-lion-king-et00396541-1734081980.jpg" alt="Mufasa">
+                <p>Mufasa</p>
+                <span>Adventure/Animation/Drama
+                    </span>
+            </div>
+            <div class="movie">
+                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/deva-et00374104-1738145051.jpg" alt="Deva">
+                <p>Deva</p>
+                <span>Action/Drama</span>
+            </div>
+            <div class="movie">
+                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/sky-force-et00371539-1737535327.jpg" alt="Sky Force">
+                <p>Sky Force</p>
+                <span>Action/Historical/Thriller</span>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
