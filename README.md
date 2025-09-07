@@ -3,13 +3,13 @@ This document provides an overview of a static front-end clone of the BookMyShow
 
 # Features
 **Responsive Design:** The layout is engineered to be fully responsive, ensuring optimal viewing and functionality across a variety of devices, including desktops, tablets, and mobile phones.  
-- **Static Movie Listings:** The interface displays a curated list of movie entries, complete with titles, genres, and poster images.  
-- **Interactive Booking Interface:** Users can select a movie card to reveal available showtimes.  
-- **Dynamic Seat Selection:** Upon selecting a showtime, a seating chart is displayed. The seating grid is designed to dynamically render seats with distinct visual indicators for the following states:
-   -- Available: Seats that are open for selection.
-   -- Selected: Seats chosen by the user for booking.
-   -- Occupied: Seats that are unavailable.
-   -- Booking Confirmation: A "Book Now" button processes the user's seat selection and provides a confirmation message. The entire booking process is designed to be intuitive and user-friendly.
+**Static Movie Listings:** The interface displays a curated list of movie entries, complete with titles, genres, and poster images.  
+**Interactive Booking Interface:** Users can select a movie card to reveal available showtimes.  
+**Dynamic Seat Selection:** Upon selecting a showtime, a seating chart is displayed. The seating grid is designed to dynamically render seats with distinct visual indicators for the following states:  
+- Available: Seats that are open for selection.
+- Selected: Seats chosen by the user for booking.
+- Occupied: Seats that are unavailable.
+- Booking Confirmation: A "Book Now" button processes the user's seat selection and provides a confirmation message. The entire booking process is designed to be intuitive and user-friendly.
 
 # Technologies Used
 - HTML5: Serves as the foundational markup language for structuring the web page content.
