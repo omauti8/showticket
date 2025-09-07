@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
+            background-color: #f0f2f5;
         }
         header {
             display: flex;
@@ -19,6 +19,7 @@
             background-color: #333;
             color: white;
             padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         header h1 {
             margin: 0;
@@ -54,6 +55,12 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             min-width: 200px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .movie:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         .movie img {
             width: 100%;
@@ -67,44 +74,313 @@
             font-size: 12px;
             color: gray;
         }
+        .showtimes-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .showtimes-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .showtimes-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .showtimes-buttons button {
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .showtimes-buttons button.active {
+            background-color: #e50914;
+            color: white;
+            border-color: #e50914;
+        }
+        .screen-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .screen {
+            width: 80%;
+            height: 20px;
+            background-color: #333;
+            margin: 0 auto;
+            border-radius: 5px;
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .screen-text {
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 12px;
+        }
+        .seats-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .seat {
+            width: 30px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+        .seat.available {
+            background-color: #4CAF50;
+            cursor: pointer;
+        }
+        .seat.selected {
+            background-color: #e50914;
+        }
+        .seat.occupied {
+            background-color: #888;
+            cursor: not-allowed;
+        }
+        #bookButton {
+            background-color: #e50914;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        #messageBox {
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 20px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Header Section -->
     <header>
         <h1>book<span style="color: red;">my</span>show</h1>
         <input type="text" placeholder="Search for Movies, Events, Plays, Sports and Activities">
         <button>Sign In</button>
     </header>
+
+    <!-- Main Content Section -->
     <main>
         <h2>Recommended Movies</h2>
-        <div class="movie-container">
-            <div class="movie">
-                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/chhaava-et00408691-1737623374.jpg" alt="Chhaava">
-                <p>Chhaava</p>
-                <span>Action/Drama/Historical</span>
-            </div>
-            <div class="movie">
-                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/captain-america-brave-new-world-et00399765-1737957738.jpg" alt="Captain America: Brave New World">
-                <p>Captain America: Brave New World</p>
-                <span>Action/Adventure/Sci-Fi</span>
-            </div>
-            <div class="movie">
-                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/mufasa-the-lion-king-et00396541-1734081980.jpg" alt="Mufasa">
-                <p>Mufasa</p>
-                <span>Adventure/Animation/Drama
-                    </span>
-            </div>
-            <div class="movie">
-                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/deva-et00374104-1738145051.jpg" alt="Deva">
-                <p>Deva</p>
-                <span>Action/Drama</span>
-            </div>
-            <div class="movie">
-                <img src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/sky-force-et00371539-1737535327.jpg" alt="Sky Force">
-                <p>Sky Force</p>
-                <span>Action/Historical/Thriller</span>
-            </div>
+        <div id="movie-list" class="movie-container">
+            <!-- Movies will be dynamically inserted here by JavaScript -->
         </div>
+
+        <!-- Seat Selection Section (Hidden by default) -->
+        <section id="showtimes-section" class="showtimes-section">
+            <h3 id="showtimes-title" class="showtimes-title"></h3>
+            <div id="showtime-buttons" class="showtimes-buttons">
+                <!-- Showtimes will be dynamically inserted here -->
+            </div>
+            
+            <div class="screen-container">
+                <div class="screen">
+                    <span class="screen-text">Screen</span>
+                </div>
+            </div>
+
+            <div id="seats-grid" class="seats-grid">
+                <!-- Seats will be dynamically inserted here -->
+            </div>
+            
+            <button id="bookButton">Book Now</button>
+            <div id="messageBox"></div>
+        </section>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const movies = [
+                {
+                    id: 1,
+                    title: "Chhaava",
+                    genre: "Action/Drama/Historical",
+                    image: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/chhaava-et00408691-1737623374.jpg",
+                    showtimes: ["10:00 AM", "01:30 PM", "05:00 PM"]
+                },
+                {
+                    id: 2,
+                    title: "Captain America: Brave New World",
+                    genre: "Action/Adventure/Sci-Fi",
+                    image: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/captain-america-brave-new-world-et00399765-1737957738.jpg",
+                    showtimes: ["11:00 AM", "02:00 PM", "06:00 PM"]
+                },
+                {
+                    id: 3,
+                    title: "Mufasa",
+                    genre: "Adventure/Animation/Drama",
+                    image: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/mufasa-the-lion-king-et00396541-1734081980.jpg",
+                    showtimes: ["09:00 AM", "12:00 PM", "04:00 PM"]
+                },
+                {
+                    id: 4,
+                    title: "Deva",
+                    genre: "Action/Drama",
+                    image: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/deva-et00374104-1738145051.jpg",
+                    showtimes: ["10:30 AM", "02:30 PM", "07:00 PM"]
+                },
+                {
+                    id: 5,
+                    title: "Sky Force",
+                    genre: "Action/Historical/Thriller",
+                    image: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/sky-force-et00371539-1737535327.jpg",
+                    showtimes: ["09:30 AM", "01:00 PM", "04:30 PM"]
+                }
+            ];
+
+            const movieList = document.getElementById('movie-list');
+            const showtimesSection = document.getElementById('showtimes-section');
+            const showtimesTitle = document.getElementById('showtimes-title');
+            const showtimeButtons = document.getElementById('showtime-buttons');
+            const seatsGrid = document.getElementById('seats-grid');
+            const bookButton = document.getElementById('bookButton');
+            const messageBox = document.getElementById('messageBox');
+            let selectedSeats = [];
+
+            // Function to generate occupied seats (for demonstration)
+            function getOccupiedSeats(showtime) {
+                const occupied = [];
+                // Simple deterministic logic to make it look different for each showtime
+                const seed = showtime.length + showtime.charCodeAt(0);
+                for (let i = 0; i < 20; i++) {
+                    if ((i + seed) % 5 === 0) {
+                        occupied.push(i);
+                    }
+                }
+                return occupied;
+            }
+
+            // Function to render movie cards
+            function renderMovies() {
+                movieList.innerHTML = '';
+                movies.forEach(movie => {
+                    const movieCard = document.createElement('div');
+                    movieCard.classList.add('movie');
+                    movieCard.dataset.movieId = movie.id;
+                    movieCard.innerHTML = `
+                        <img src="${movie.image}" alt="${movie.title}">
+                        <p>${movie.title}</p>
+                        <span>${movie.genre}</span>
+                    `;
+                    movieCard.addEventListener('click', () => {
+                        showSeatSelection(movie);
+                    });
+                    movieList.appendChild(movieCard);
+                });
+            }
+
+            // Function to show seat selection for a movie
+            function showSeatSelection(movie) {
+                showtimesSection.style.display = 'flex';
+                showtimesTitle.textContent = movie.title;
+                showtimeButtons.innerHTML = '';
+                selectedSeats = [];
+                messageBox.textContent = '';
+                
+                movie.showtimes.forEach(time => {
+                    const button = document.createElement('button');
+                    button.textContent = time;
+                    button.addEventListener('click', () => {
+                        document.querySelectorAll('#showtime-buttons button').forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        renderSeats(getOccupiedSeats(time));
+                    });
+                    showtimeButtons.appendChild(button);
+                });
+
+                // Automatically click the first showtime to load seats
+                if (movie.showtimes.length > 0) {
+                    showtimeButtons.querySelector('button').click();
+                }
+            }
+
+            // Function to render seat grid
+            function renderSeats(occupiedSeats = []) {
+                seatsGrid.innerHTML = '';
+                selectedSeats = [];
+                for (let i = 0; i < 60; i++) {
+                    const seat = document.createElement('div');
+                    seat.classList.add('seat');
+                    seat.dataset.seatIndex = i;
+
+                    if (occupiedSeats.includes(i)) {
+                        seat.classList.add('occupied');
+                    } else {
+                        seat.classList.add('available');
+                        seat.addEventListener('click', () => {
+                            if (!seat.classList.contains('occupied')) {
+                                seat.classList.toggle('selected');
+                                if (seat.classList.contains('selected')) {
+                                    selectedSeats.push(i);
+                                } else {
+                                    const index = selectedSeats.indexOf(i);
+                                    if (index > -1) {
+                                        selectedSeats.splice(index, 1);
+                                    }
+                                }
+                                updateMessageBox();
+                            }
+                        });
+                    }
+                    seatsGrid.appendChild(seat);
+                }
+            }
+
+            // Function to update the message box with selected seats
+            function updateMessageBox() {
+                if (selectedSeats.length > 0) {
+                    messageBox.textContent = `Selected Seats: ${selectedSeats.join(', ')}`;
+                } else {
+                    messageBox.textContent = '';
+                }
+            }
+
+            // Book Button Click Handler
+            bookButton.addEventListener('click', () => {
+                if (selectedSeats.length > 0) {
+                    messageBox.textContent = `Booking successful for seats ${selectedSeats.join(', ')}!`;
+                    // You could add logic here to "occupy" these seats for future use
+                    selectedSeats = [];
+                    // You might want to re-render the seat grid or reset the UI
+                } else {
+                    messageBox.textContent = 'Please select at least one seat.';
+                }
+            });
+
+            // Initial render
+            renderMovies();
+        });
+    </script>
+
 </body>
 </html>
