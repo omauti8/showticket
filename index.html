@@ -180,22 +180,20 @@
     </style>
 </head>
 <body>
-
-    <!-- Header Section -->
+    
     <header>
         <h1>book<span style="color: red;">my</span>show</h1>
         <input type="text" placeholder="Search for Movies, Events, Plays, Sports and Activities">
         <button>Sign In</button>
     </header>
 
-    <!-- Main Content Section -->
     <main>
         <h2>Recommended Movies</h2>
         <div id="movie-list" class="movie-container">
             <!-- Movies will be dynamically inserted here by JavaScript -->
         </div>
 
-        <!-- Seat Selection Section (Hidden by default) -->
+        
         <section id="showtimes-section" class="showtimes-section">
             <h3 id="showtimes-title" class="showtimes-title"></h3>
             <div id="showtime-buttons" class="showtimes-buttons">
@@ -209,7 +207,7 @@
             </div>
 
             <div id="seats-grid" class="seats-grid">
-                <!-- Seats will be dynamically inserted here -->
+                
             </div>
             
             <button id="bookButton">Book Now</button>
@@ -267,7 +265,7 @@
             const messageBox = document.getElementById('messageBox');
             let selectedSeats = [];
 
-            // Function to generate occupied seats (for demonstration)
+            
             function getOccupiedSeats(showtime) {
                 const occupied = [];
                 // Simple deterministic logic to make it look different for each showtime
@@ -280,7 +278,7 @@
                 return occupied;
             }
 
-            // Function to render movie cards
+            
             function renderMovies() {
                 movieList.innerHTML = '';
                 movies.forEach(movie => {
@@ -299,7 +297,7 @@
                 });
             }
 
-            // Function to show seat selection for a movie
+            
             function showSeatSelection(movie) {
                 showtimesSection.style.display = 'flex';
                 showtimesTitle.textContent = movie.title;
@@ -318,13 +316,13 @@
                     showtimeButtons.appendChild(button);
                 });
 
-                // Automatically click the first showtime to load seats
+                
                 if (movie.showtimes.length > 0) {
                     showtimeButtons.querySelector('button').click();
                 }
             }
 
-            // Function to render seat grid
+            
             function renderSeats(occupiedSeats = []) {
                 seatsGrid.innerHTML = '';
                 selectedSeats = [];
@@ -356,7 +354,7 @@
                 }
             }
 
-            // Function to update the message box with selected seats
+           
             function updateMessageBox() {
                 if (selectedSeats.length > 0) {
                     messageBox.textContent = `Selected Seats: ${selectedSeats.join(', ')}`;
@@ -364,23 +362,20 @@
                     messageBox.textContent = '';
                 }
             }
-
-            // Book Button Click Handler
+        
             bookButton.addEventListener('click', () => {
                 if (selectedSeats.length > 0) {
                     messageBox.textContent = `Booking successful for seats ${selectedSeats.join(', ')}!`;
-                    // You could add logic here to "occupy" these seats for future use
-                    selectedSeats = [];
-                    // You might want to re-render the seat grid or reset the UI
+                    selectedSeats = [];                 
                 } else {
                     messageBox.textContent = 'Please select at least one seat.';
                 }
             });
 
-            // Initial render
             renderMovies();
         });
     </script>
 
 </body>
 </html>
+
